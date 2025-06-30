@@ -1,5 +1,6 @@
 
 import { TodoList, Todo } from './classes';
+import { createTodoHtml } from './js/componentes';
 import './styles.css';
 
 
@@ -12,4 +13,7 @@ todoList.addTodo(todo);
 
 
 console.log(todoList);
+
+createTodoHtml(todo);
+
 
