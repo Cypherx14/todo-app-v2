@@ -18,7 +18,7 @@ export class TodoList {
     // function to mark a todo as completed or not
     toggleTodo(id) {
         for (const todo of this.todos) {
-            if (todo.id === id) {
+            if (todo.id == id){ // == because one is a String and the other is a number
                 todo.completed = !todo.completed;
                 break;
             }
