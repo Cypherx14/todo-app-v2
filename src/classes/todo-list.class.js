@@ -25,8 +25,12 @@ export class TodoList {
         }
     }
 
+    deleteTodo(id) {
+        this.todos = this.todos.filter(todo => todo.id != id);
+    }
+
     // function to delete all completed todos
-    deleteCompleted() { 
-        
+    deleteAllCompleted() { 
+        this.todos = this.todos.filter(todo => !todo.completed);
     }
 }
