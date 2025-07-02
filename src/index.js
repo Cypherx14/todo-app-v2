@@ -7,5 +7,3 @@ import './styles.css';
 // instance of todo list
 export const todoList = new TodoList();
 
-
-
