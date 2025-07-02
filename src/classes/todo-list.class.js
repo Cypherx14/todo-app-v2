@@ -1,8 +1,11 @@
 
+import { Todo } from './todo.class.js';
+
 export class TodoList {
 
     constructor() {
-        this.todos = [];
+        // this.todos = [];
+        this.loadFromLocalStorage(); // load todos from localStorage
     }
 
     // function to aggregate todos 
@@ -45,7 +48,10 @@ export class TodoList {
 
     // load from localStorage
     loadFromLocalStorage() {
-        this.todos = JSON.parse(localStorage.getItem('todoList')) || [];
-        this.todos = this.todos.map(obj => Todo.fromJson(obj)); // convert to Todo instances
+        // if there is no todo in localStorage, set todos to an empty array
+        this.todos = (localStorage.getItem('todo')) 
+            ?  JSON.parse(localStorage.getItem('todo')) // convert each todo from JSON to Todo object
+            : []  ; // ensure todos is an array
+        this.todos = this.todos.map(Todo.fromJson); // convert each todo from JSON to Todo object
     }
 }
