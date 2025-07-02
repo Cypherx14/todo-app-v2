@@ -6,6 +6,8 @@ import { todoList } from '../../src/index.js';
 const divtodoList = document.querySelector('.todo-list');
 const inputTodo = document.querySelector('.new-todo');
 const btnDeleteCompleted = document.querySelector('.clear-completed');
+const ulTodoFilters = document.querySelector('.filters');
+const anchorFilters = document.querySelectorAll('.filtro');
 
 export const createTodoHtml = (todo) => {
 
@@ -59,6 +61,36 @@ btnDeleteCompleted.addEventListener('click', () => {
 		const element = divtodoList.children[i];
 		if (element.classList.contains('completed')) {
 			divtodoList.removeChild(element);
+		}
+	}
+});
+
+//filter todos
+ulTodoFilters.addEventListener('click', (event) => {
+	console.log(event.target.text);
+	const filter = event.target.text;
+	if (!filter) return; // if the user clicks outside the filter options
+	
+	//remove the active class from all filters
+	anchorFilters.forEach(element => element.classList.remove('selected'));
+	event.target.classList.add('selected'); //add the active class to the clicked filter
+
+	for(const element of divtodoList.children) {
+		element.classList.remove('hidden'); //remove the hidden class from all todos
+		const completed = element.classList.contains('completed');
+		switch (filter) {
+			case 'Pendientes':
+				if (completed) {
+					element.classList.add('hidden'); //hide completed todos
+				}
+				break;
+			case 'Completados':
+				if (!completed) {
+					element.classList.add('hidden'); //hide active todos
+				}
+				break;
+			default:
+				break; //show all todos
 		}
 	}
 });
